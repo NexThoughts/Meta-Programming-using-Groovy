@@ -149,7 +149,7 @@ println(tmpFile)*/
 //=============================================
 // Mixins
 //=============================================
-class SpidermanPower {
+/*class SpidermanPower {
     String spiderSense() {
         "Using spider-sense..."
     }
@@ -177,4 +177,55 @@ assert person.fly() == "Flying..."
 println("=====> person.fly(): ${person.fly()}")
 
 assert !(person instanceof SupermanPower)
-println("=====> !(person instanceof SupermanPower): ${!(person instanceof SupermanPower)}")
+println("=====> !(person instanceof SupermanPower): ${!(person instanceof SupermanPower)}")*/
+
+//=============================================
+// Traits
+//=============================================
+/*trait SpidermanPower {
+    String spiderSense() {
+        "Using spider-sense..."
+    }
+}
+
+trait SupermanPower {
+    String fly() {
+        "Flying..."
+    }
+}
+
+class Person implements SpidermanPower {}
+
+def person = new Person()
+assert person.spiderSense() == "Using spider-sense..."
+println("=====> person.spiderSense(): ${person.spiderSense()}")
+assert person instanceof SpidermanPower
+def person2 = person.withTraits SupermanPower
+assert person2.fly() == "Flying..."
+println("=====> person2.fly(): ${person2.fly()}")
+assert person2 instanceof SupermanPower*/
+
+//=============================================
+// Check for Methods and Properties
+//=============================================
+class Person {
+    String name
+    Integer age
+
+    String sayHi() {
+        "Hi, my name is ${name} and I'm ${age}"
+    }
+
+    String sayHiTo(String name) {
+        "Hi ${name}, how are you?"
+    }
+}
+
+def p = new Person(name: 'Iván', age: 34)
+
+assert p.respondsTo('sayHi')
+assert p.respondsTo('sayHiTo', String)
+assert !p.respondsTo('goodbye')
+
+assert p.hasProperty('name')
+assert !p.hasProperty('country')
