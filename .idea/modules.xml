@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/demoMetaProgramming.iml" filepath="$PROJECT_DIR$/demoMetaProgramming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demoMetaProgramming-grailsPlugins.iml" filepath="$PROJECT_DIR$/demoMetaProgramming-grailsPlugins.iml" />
+    </modules>
+  </component>
+</project>
