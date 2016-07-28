@@ -1,9 +1,14 @@
 /**
  * Created by ali on 28/7/16.
  */
-import demo.*
 
 // INTERCEPTION THROUGH META CLASS DEMO
+class InterceptionThroughMetaClassDemo {
+    void sayHello(String name) {
+        println "========> Hello $name"
+    }
+}
+
 InterceptionThroughMetaClassDemo.metaClass.invokeMethod = { String methodName, Object args ->
     println("Invoking method '$methodName' with args '$args'")
     def method = InterceptionThroughMetaClassDemo.metaClass.getMetaMethod(methodName, args)
