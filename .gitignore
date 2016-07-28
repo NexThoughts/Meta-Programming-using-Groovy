@@ -34,3 +34,14 @@
 # "temporary" build files
 /target
 
+# "idea" files
+*.idea
+
+# "slcache" files
+*.slcache
+
+# "out" files
+/out
+
+# "iml" files
+*.iml
