@@ -58,11 +58,10 @@ assert utilsInstance.released == true
 println("utilsInstance.version: $utilsInstance.version")
 println("utilsInstance.released: $utilsInstance.released")*/
 
-
 //=============================================
 // Overriding Methods Using MetaClass
 //=============================================
-// Integer
+/*// Integer
 assert '15' == 15.toString()
 Integer.metaClass.toString = {
     delegate == 15 ?
@@ -78,4 +77,47 @@ println("100.toString(): ${100.toString()}")
 assert false.toBoolean() == false
 Boolean.metaClass.toBoolean = { !delegate }
 assert false.toBoolean() == true
-println("false.toBoolean(): ${false.toBoolean()}")
+println("false.toBoolean(): ${false.toBoolean()}")*/
+
+//=============================================
+// Overriding Methods Using MetaClass
+//=============================================
+/*class StringUtils {
+    static String truncate(String text, Integer length, Boolean overflow = false) {
+        text.take(length) + (overflow ? '...' : '')
+    }
+}
+
+use(StringUtils) {
+    println "Hello! Everyone.".truncate(5)
+}
+try {
+    println "Hi! Ali.".truncate(5)
+} catch (MissingMethodException mme) {
+    println mme
+}*/
+
+class Distance {
+    def number
+
+    String toString() {
+        println("==========> ${number}")
+        "${number}"
+    }
+}
+
+@Category(Number)
+class NumberCategory {
+    Distance getMeters() {
+        new Distance(number: this + 'm')
+    }
+
+    Distance getKiloMeters() {
+        new Distance(number: this + 'km')
+    }
+}
+
+use(NumberCategory) {
+    assert 10.kiloMeters.toString() == '10km'
+    assert 50.meters.toString() == '50m'
+}
