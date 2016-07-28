@@ -97,7 +97,7 @@ try {
     println mme
 }*/
 
-class Distance {
+/*class Distance {
     def number
 
     String toString() {
@@ -120,4 +120,61 @@ class NumberCategory {
 use(NumberCategory) {
     assert 10.kiloMeters.toString() == '10km'
     assert 50.meters.toString() == '50m'
+}*/
+
+/*
+class FileBinaryCategory {
+    def static leftShift(File file, URL url) {
+        def input
+        def output
+
+        try {
+            input = url.openStream()
+            output = new BufferedOutputStream(new FileOutputStream(file))
+            output << input
+        }
+        finally {
+            input?.close()
+            output?.close()
+        }
+    }
 }
+
+File tmpFile = File.createTempFile('temp_', '')
+use(FileBinaryCategory) {
+    tmpFile << "https://en.wikipedia.org/wiki/Groovy_(programming_language)#/media/File:Groovy-logo.svg".toURL()
+}
+println(tmpFile)*/
+
+//=============================================
+// Mixins
+//=============================================
+class SpidermanPower {
+    String spiderSense() {
+        "Using spider-sense..."
+    }
+}
+
+class SupermanPower {
+    String fly() {
+        "Flying..."
+    }
+}
+
+@Mixin([SpidermanPower])
+class Person {}
+
+def person = new Person()
+assert person.spiderSense() == "Using spider-sense..."
+
+println("=====> person.spiderSense(): ${person.spiderSense()}")
+assert !(person instanceof SpidermanPower)
+println("=====> !(person instanceof SpidermanPower): ${!(person instanceof SpidermanPower)}")
+
+Person.mixin SupermanPower
+
+assert person.fly() == "Flying..."
+println("=====> person.fly(): ${person.fly()}")
+
+assert !(person instanceof SupermanPower)
+println("=====> !(person instanceof SupermanPower): ${!(person instanceof SupermanPower)}")
