@@ -8,7 +8,7 @@ package categories
 //=============================================
 
 // ****** EXAMPLE 1 ******
-/*class StringUtils {
+class StringUtils {
     static String truncate(String text, Integer length, Boolean overflow = false) {
         text.take(length) + (overflow ? '...' : '')
     }
@@ -21,7 +21,7 @@ try {
     println "Hi! Ali.".truncate(5)
 } catch (MissingMethodException mme) {
     println mme
-}*/
+}
 
 // ****** EXAMPLE 2 ******
 /*class Distance {
@@ -60,6 +60,7 @@ class StringUtilAnnotated {
 }
 
 use(StringUtilAnnotated) {
+    println "======== Inside StringUtilAnnotated ========"
     println "123456789".toSSN()
     println "12345".toSSN()
 }*/
@@ -78,10 +79,19 @@ use(StringUtilAnnotated) {
 }
 
 use(FindUtil) {
+    println "======== Inside FindUtil ========"
     println "121254123".extractOnly { it == '4' || it == '5' }
 }*/
 
 // ****** EXAMPLE 5 ******
+/*use(StringUtilAnnotated, FindUtil) {
+    println "======== Inside StringUtilAnnotated FindUtil ========"
+    str = "123487651"
+    println str.toSSN()
+    println str.extractOnly { it == '8' || it == '1' }
+}*/
+
+// ****** EXAMPLE 6 ******
 /*
 class FileBinaryCategory {
     def static leftShift(File file, URL url) {
