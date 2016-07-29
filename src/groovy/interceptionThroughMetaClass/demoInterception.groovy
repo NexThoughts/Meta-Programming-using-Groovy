@@ -6,6 +6,7 @@ package interceptionThroughMetaClass
 //=============================================
 // INTERCEPTION THROUGH META CLASS DEMO
 //=============================================
+//*********** Example 1 *************
 class InterceptionThroughMetaClassDemo {
     void sayHello(String name) {
         println "========> Hello $name"
@@ -22,6 +23,7 @@ demoAddingMethods.sayHello("ALI")
 demoAddingMethods.sayHI("EVERYONE")
 demoAddingMethods.anotherMethod()
 
+//*********** Example 2 *************
 /*
 Integer.metaClass.invokeMethod = { String name, args ->
     System.out.println("Call to $name intercepted on $delegate... ")
@@ -42,3 +44,31 @@ try {
 } catch (Exception ex) {
     println ex
 }*/
+
+//*********** Example 3 *************
+/*
+class Car {
+    def check() { System.out.println "check called..." }
+
+    def start() { System.out.println "start called..." }
+
+    def drive() { System.out.println "drive called..." }
+}
+
+Car.metaClass.invokeMethod = { String name, args ->
+    System.out.print("Call to $name intercepted... ")
+    if (name != 'check') {
+        System.out.print("running filter... ")
+        Car.metaClass.getMetaMethod('check').invoke(delegate, null)
+    }
+    def validMethod = Car.metaClass.getMetaMethod(name, args)
+    if (validMethod != null) {
+        validMethod.invoke(delegate, args)
+    } else {
+        Car.metaClass.invokeMissingMethod(delegate, name, args)
+    }
+}
+car = new Car()
+car.start()
+car.drive()
+car.check()*/
