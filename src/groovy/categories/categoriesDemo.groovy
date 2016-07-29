@@ -6,7 +6,9 @@ package categories
 //=============================================
 // Categories
 //=============================================
-class StringUtils {
+
+// ****** EXAMPLE 1 ******
+/*class StringUtils {
     static String truncate(String text, Integer length, Boolean overflow = false) {
         text.take(length) + (overflow ? '...' : '')
     }
@@ -19,8 +21,9 @@ try {
     println "Hi! Ali.".truncate(5)
 } catch (MissingMethodException mme) {
     println mme
-}
+}*/
 
+// ****** EXAMPLE 2 ******
 /*class Distance {
     def number
 
@@ -46,6 +49,22 @@ use(NumberCategory) {
     assert 50.meters.toString() == '50m'
 }*/
 
+// ****** EXAMPLE 3 ******
+@Category(String)
+class StringUtilAnnotated {
+    def toSSN() {
+        if (size() == 9) {
+            "${this[0..2]}-${this[3..4]}-${this[5..8]}"
+        }
+    }
+}
+
+use(StringUtilAnnotated) {
+    println "123456789".toSSN()
+    println "12345".toSSN()
+}
+
+// ****** EXAMPLE 4 ******
 /*
 class FileBinaryCategory {
     def static leftShift(File file, URL url) {
