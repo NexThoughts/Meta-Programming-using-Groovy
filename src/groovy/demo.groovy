@@ -61,7 +61,7 @@ println("utilsInstance.released: $utilsInstance.released")*/
 //=============================================
 // Adding Constructor Using MetaClass
 //=============================================
-try {
+/*try {
     println(new Integer(Calendar.instance))
 }
 catch (e) {
@@ -70,7 +70,7 @@ catch (e) {
 Integer.metaClass.constructor << { Calendar calendar ->
     new Integer(calendar.get(Calendar.DATE))
 }
-println("Today's Date: ${new Integer(Calendar.instance)}")
+println("Today's Date: ${new Integer(Calendar.instance)}")*/
 
 //=============================================
 // Overriding Methods Using MetaClass
@@ -244,3 +244,18 @@ assert !p.respondsTo('goodbye')
 
 assert p.hasProperty('name')
 assert !p.hasProperty('country')*/
+
+//=============================================
+// Closure Delegate Demo
+//=============================================
+cl = { ->
+    append "Hi!"
+    append " this is closure delegate demo."
+}
+
+sb = new StringBuffer()
+cl.delegate = sb
+
+cl()
+
+println "SB: ${sb}"
