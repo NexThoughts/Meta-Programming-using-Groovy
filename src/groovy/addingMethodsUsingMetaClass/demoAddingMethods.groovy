@@ -23,3 +23,14 @@ String.metaClass.truncateDemo = { Integer length, Boolean overflow = false ->
 }
 assert chuckIpsum.truncateDemo(20, true) == StringUtils.truncate(chuckIpsum, 20, true)
 println(chuckIpsum.truncateDemo(20, true))
+
+//=============================================
+// Adding/Injecting Methods Using ExpandoMetaClass
+//=============================================
+/*
+Integer.metaClass.getDaysFromNow = { ->
+    Calendar today = Calendar.instance
+    today.add(Calendar.DAY_OF_MONTH, delegate)
+    today.time
+}
+println 1.daysFromNow*/
