@@ -46,8 +46,7 @@ try {
 }*/
 
 //*********** Example 3 *************
-/*
-class Car {
+/*class Car {
     def check() { System.out.println "check called..." }
 
     def start() { System.out.println "start called..." }
@@ -71,4 +70,9 @@ Car.metaClass.invokeMethod = { String name, args ->
 car = new Car()
 car.start()
 car.drive()
-car.check()*/
+car.check()
+try {
+    car.speed()
+} catch (Exception ex) {
+    println ex
+}*/
