@@ -50,7 +50,7 @@ use(NumberCategory) {
 }*/
 
 // ****** EXAMPLE 3 ******
-@Category(String)
+/*@Category(String)
 class StringUtilAnnotated {
     def toSSN() {
         if (size() == 9) {
@@ -62,9 +62,26 @@ class StringUtilAnnotated {
 use(StringUtilAnnotated) {
     println "123456789".toSSN()
     println "12345".toSSN()
-}
+}*/
 
 // ****** EXAMPLE 4 ******
+/*class FindUtil {
+    def static extractOnly(String self, closure) {
+        def result = ''
+        self.each {
+            if (closure(it)) {
+                result += it
+            }
+        }
+        result
+    }
+}
+
+use(FindUtil) {
+    println "121254123".extractOnly { it == '4' || it == '5' }
+}*/
+
+// ****** EXAMPLE 5 ******
 /*
 class FileBinaryCategory {
     def static leftShift(File file, URL url) {
