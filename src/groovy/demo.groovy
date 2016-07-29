@@ -59,6 +59,19 @@ println("utilsInstance.version: $utilsInstance.version")
 println("utilsInstance.released: $utilsInstance.released")*/
 
 //=============================================
+// Adding Constructor Using MetaClass
+//=============================================
+try {
+    println(new Integer(Calendar.instance))
+}
+catch (e) {
+}
+
+Integer.metaClass.constructor << { Calendar calendar ->
+    new Integer(calendar.get(Calendar.DATE))
+}
+println("Today's Date: ${new Integer(Calendar.instance)}")
+//=============================================
 // Overriding Methods Using MetaClass
 //=============================================
 /*// Integer
@@ -208,6 +221,7 @@ assert person2 instanceof SupermanPower*/
 //=============================================
 // Check for Methods and Properties
 //=============================================
+/*
 class Person {
     String name
     Integer age
@@ -228,4 +242,4 @@ assert p.respondsTo('sayHiTo', String)
 assert !p.respondsTo('goodbye')
 
 assert p.hasProperty('name')
-assert !p.hasProperty('country')
+assert !p.hasProperty('country')*/
