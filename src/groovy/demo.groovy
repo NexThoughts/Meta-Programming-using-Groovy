@@ -21,6 +21,26 @@ demo.sayHello("ALI")
 demo.sayHI("EVERYONE")
 demo.anotherMethod()*/
 
+Integer.metaClass.invokeMethod = { String name, args ->
+    System.out.println("Call to $name intercepted on $delegate... ")
+    def validMethod = Integer.metaClass.getMetaMethod(name, args)
+    if (validMethod == null) {
+        Integer.metaClass.invokeMissingMethod(delegate, name, args)
+    } else {
+        System.out.println("running pre-filter... ")
+        result = validMethod.invoke(delegate, args) // Remove this for around-advice
+        System.out.println("running post-filter... ")
+        result
+    }
+}
+println 5.floatValue()
+println 6.intValue()
+try {
+    println 7.empty()
+} catch (Exception ex) {
+    println ex
+}
+
 //=============================================
 // Adding Methods Using MetaClass
 //=============================================
@@ -248,6 +268,7 @@ assert !p.hasProperty('country')*/
 //=============================================
 // Closure Delegate Demo
 //=============================================
+/*
 cl = { ->
     append "Hi!"
     append " this is closure delegate demo."
@@ -258,4 +279,4 @@ cl.delegate = sb
 
 cl()
 
-println "SB: ${sb}"
+println "SB: ${sb}"*/
