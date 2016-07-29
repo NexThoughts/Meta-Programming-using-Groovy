@@ -21,7 +21,7 @@ demo.sayHello("ALI")
 demo.sayHI("EVERYONE")
 demo.anotherMethod()*/
 
-Integer.metaClass.invokeMethod = { String name, args ->
+/*Integer.metaClass.invokeMethod = { String name, args ->
     System.out.println("Call to $name intercepted on $delegate... ")
     def validMethod = Integer.metaClass.getMetaMethod(name, args)
     if (validMethod == null) {
@@ -39,7 +39,7 @@ try {
     println 7.empty()
 } catch (Exception ex) {
     println ex
-}
+}*/
 
 //=============================================
 // Adding Methods Using MetaClass
@@ -280,3 +280,22 @@ cl.delegate = sb
 cl()
 
 println "SB: ${sb}"*/
+
+//=============================================
+// Creating Dynamic Classes with Expando
+//=============================================
+/*
+carA = new Expando()
+carB = new Expando(year: 2012, miles: 0)
+carA.year = 2012
+carA.miles = 10
+println "carA: " + carA
+println "carB: " + carB*/
+
+car = new Expando(year: 2012, miles: 0, turn: { println 'turning...' })
+car.drive = {
+    miles += 10
+    println "$miles miles driven"
+}
+car.drive()
+car.turn()
