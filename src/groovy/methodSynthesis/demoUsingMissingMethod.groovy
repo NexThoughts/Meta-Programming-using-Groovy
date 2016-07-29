@@ -1,4 +1,4 @@
-package methodSynthesisUsingMissingMethod
+package methodSynthesis
 
 /**
  * Created by ali on 30/7/16.
