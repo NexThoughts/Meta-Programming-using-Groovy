@@ -71,6 +71,7 @@ Integer.metaClass.constructor << { Calendar calendar ->
     new Integer(calendar.get(Calendar.DATE))
 }
 println("Today's Date: ${new Integer(Calendar.instance)}")
+
 //=============================================
 // Overriding Methods Using MetaClass
 //=============================================
@@ -93,7 +94,7 @@ assert false.toBoolean() == true
 println("false.toBoolean(): ${false.toBoolean()}")*/
 
 //=============================================
-// Overriding Methods Using MetaClass
+// Categories
 //=============================================
 /*class StringUtils {
     static String truncate(String text, Integer length, Boolean overflow = false) {
